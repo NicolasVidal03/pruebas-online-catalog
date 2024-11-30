@@ -3,9 +3,8 @@ Feature: As a user of the GMO Post demo page
          so I can clear all the fields easily
          
 Background:
-  Given I am on the welcome page
-  When I click on button "Enter GMO OnLine"
-  And I am on the GMO homepage
+  Given I am on the GMO homepage
+  When I click on the "Enter GMO OnLine" button
 
 @maximize
 Scenario: Clear a single field when clicking Reset Form

@@ -4,8 +4,8 @@ Feature: Catalog Verification
   So that I can ensure all items are shown with accurate details and actions
 
 Background:
-  Given I am on the welcome page of GMO OnLine
-  When I click on the button "Enter GMO OnLine"
+  Given I am on the GMO homepage
+  When I click on the "Enter GMO OnLine" button
   And I am on the GMO home
 
 @maximize

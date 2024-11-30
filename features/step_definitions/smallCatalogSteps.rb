@@ -1,16 +1,3 @@
-# Paso general para verificar que estamos en el homepage de GMO
-
-# Given I am on the welcome page of GMO OnLine
-Given(/^I am on the welcome page of GMO OnLine$/) do
-    page.driver.browser.manage.window.maximize
-    visit('https://demo.borland.com/gmopost/')
-  end
-  
-  # When I click on the button "Enter GMO OnLine"
-  When(/^I click on the button "([^"]*)"$/) do |button_text|
-    click_button(button_text)
-  end
-  
   # And I am on the GMO homep
   And(/^I am on the GMO home$/) do
     expect(page).to have_content("OnLine Catalog")

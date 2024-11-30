@@ -3,9 +3,11 @@ Feature: About GMO Site Page
     I want see information about GMO Web Site
     So I can see how this page is build
 
-Scenario: See information about the GMO Site      
-  Given I am on the GMO page
-  When I click in "About The GMO Site"
+Background:
+  Given I am on the GMO homepage
+  When I click on the "About The GMO Site" button
+
+Scenario: See information about the GMO Site     
   Then I should see the title "About This Site"
   And I should see the image "images/gmo-animate.gif"    
   And I should see the following table with technologies:

@@ -1,16 +1,10 @@
-#Given I am on the GMO homepage
-Given('I am on the GMO homepage') do
-    page.driver.browser.manage.window.maximize
-    visit ('https://demo.borland.com/gmopost')
-  end
-
 #When I click the button "Browser Test Page"
 When('I click the button {string}') do |nameButton|
     click_button(nameButton)
   end
 
 #Then I should see the title "All Browsers Are Not Created Equal"
-Then('I should see the title {string}') do |title|
+Then('I should see the next title {string}') do |title|
     expect(page).to have_selector('body > h1 > font', text: title)
   end
 

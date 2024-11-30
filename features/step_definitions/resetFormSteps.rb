@@ -1,19 +1,3 @@
-# Given I am on the welcome page
-Given(/^I am on the welcome page$/) do
-    page.driver.browser.manage.window.maximize
-    visit('https://demo.borland.com/gmopost/')
-  end
-  
-  # When I click on button "Enter GMO OnLine"
-  When(/^I click on button "([^"]*)"$/) do |button_text|
-    click_button(button_text)
-  end
-  
-  # And I am on the GMO homepage
-  And(/^I am on the GMO homepage$/) do
-    expect(page).to have_content("OnLine Catalog")
-  end
-  
   # Given I fill the "Order quantity" field for "3 Person Dome Tent" with "2"
   Given(/^I fill the "Order quantity" field for "([^"]+)" with "([^"]+)"$/) do |item_name, value|
     product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
