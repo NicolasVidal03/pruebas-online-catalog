@@ -123,6 +123,7 @@ Scenario Outline: Validating fields wrongly filled for billing and shipping
       | Phone             | <ShipPhone>         |
     And I click on the "Place The Order" button
     Then I should see an error alert with the message "<AlertMessage>"
+    
  Examples:
       | Name     | Address         | City       | State | Zip   | Phone        | Email           | CardNumber        | ExpirationDate  | CreditCard         | ShipName  | ShipAddress | ShipCity | ShipState | ShipZip | ShipPhone    | AlertMessage                                                                   |
       | John Doe | 123 Main St.    | New York   | NY    | 10001 | 555-123-4567 |                 | 1234-123456-12345 | 12/21           | American Express   | John Doe  | 123 Main St.| New York | NY        | 10001   | 555-123-4567 | Please enter a valid date of the form 'MM/YY' in this field.                   |
