@@ -1,0 +1,61 @@
+#When I add the order:
+When('I add the order:') do | table |
+    table.hashes.each do |row|
+      step %{I add #{row['Quantity']} "#{row['Item']}" to the order}
+    end
+  end
+When(/^I add (\d+) "([^"]*)" to the order$/) do |quantity, name|
+    
+    product_name_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2) > a > strong"
+    all_product_names = all(product_name_selector).map(&:text)
+    index = all_product_names.index(name)
+  
+    input = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 2}) > td:nth-child(4) > h1 > input[type=text]"
+    find(input).set(quantity)
+  end
+
+#And I should see the following order details:
+Then('I should see the following order details:') do | table |
+    order_details = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
+  
+    table.hashes.each_with_index do | row, index |
+      qty = row['Qty']
+      description = row['Product Description']
+      delivery = row['Delivery Status']
+      unit_price = row['Unit Price']
+  
+      row_index = index + 2
+      order_row = order_details.find("tr:nth-child(#{row_index})")
+  
+      expect(order_row.find('td:nth-child(1)').text).to eq(qty)
+      expect(order_row.find('td:nth-child(2)').text).to eq(description)
+      expect(order_row.find('td:nth-child(3)').text).to eq(delivery)
+      expect(order_row.find('td:nth-child(4)').text).to eq(unit_price)
+    end
+  end
+
+#And I should see more information about the order:
+Then('I should see more information about the order:') do | table |
+    info_order = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
+
+    table.rows.each do |row|
+        info_label = row[0]
+        info_value = row[1]
+        info_row = info_order.find('tr', text: /\b#{info_label}\b/i)
+        expect(info_row).to have_content(info_label)
+
+        value_element = nil
+        if info_label == 'Product Total'
+            value_element = info_row.find('td:nth-child(3)')
+        else
+            value_element = info_row.find('td:nth-child(2)')
+        end
+        expect(value_element).to have_content(info_value)
+    end
+  end
+
+#I should see an alert "Quantity not Allowed"
+Then('I should see an alert {string}') do | alertMessage|
+    alert = page.driver.browser.switch_to.alert
+    expect(alertMessage).to include(alert.text)
+  end

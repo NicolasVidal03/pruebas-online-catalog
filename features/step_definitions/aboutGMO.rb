@@ -1,8 +1,3 @@
-#Then I should see the title "About This Site"
-Then('I should see the title {string}') do |title|
-    expect(page).to have_selector('h1', text: title)
-  end
-
 #And I should see the image "images/gmo-animate.gif"
 Then("I should see the image {}") do |image|
     expect(page).to have_xpath("/html/body/table/tbody/tr/td[2]/h3/img")
