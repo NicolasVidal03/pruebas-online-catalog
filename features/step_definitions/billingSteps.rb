@@ -1,24 +1,17 @@
 # And I set the quantity input to "1" for the "3 Person Dome Tent"
 And(/^I set the quantity input to "([^"]*)" for the "([^"]*)"$/) do |quantity, product_name|
-    # Encuentra la fila del producto
     product_row = all('tr').find do |row|
       row.all('td')[1]&.text&.include?(product_name)
     end
-  
-    raise "Product row not found for #{product_name}" if product_row.nil?
-  
-    # Extrae el texto del precio unitario
     within(product_row) do
-      price_text = all('td')[2]&.text # Ajusta el índice de 'td' según la posición del precio
+      price_text = all('td')[2]&.text 
       raise "Price text not found for #{product_name}" if price_text.nil?
   
       unit_price = price_text.match(/\$ ([\d,]+\.\d{2})/)[1].to_f
   
-      # Calcula el total
       @quantity = quantity.to_i
       @total_price = unit_price * @quantity
   
-      # Establece la cantidad en el campo de texto
       all('input[type="text"]')[0].set(quantity)
     end
   end  
@@ -128,9 +121,7 @@ Then(/^the shipping information should be automatically filled with the followin
       field_name = row['Field']
       expected_value = row['Value']
   
-      # Verifica que el campo de envío tiene el valor esperado
       actual_value = find("[name='ship#{field_name}']").value
       expect(actual_value).to eq(expected_value), "Expected #{field_name} to be '#{expected_value}', but got '#{actual_value}'"
     end
-  end
-  
+end
