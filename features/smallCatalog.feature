@@ -8,7 +8,6 @@ Background:
   When I click on the "Enter GMO OnLine" button
   And I am on the GMO home
 
-@maximize
 Scenario: Verify the catalog displays the correct items
   Given I see the title "OnLine Catalog"
   And I see the text: These are the items currently available through our online catalog. Select the quantity of each item and then press the "Place An Order" button at the bottom of the page.
@@ -21,12 +20,10 @@ Scenario: Verify the catalog displays the correct items
     | 1004        | Hiking Boots              | $ 109.90   | 0              |
     | 1005        | Back Country Shorts       | $ 24.95    | 0              |
 
-@maximize
 Scenario: Ensure the "Reset Form" button is visible
   Given I look for the "Reset Form" button
   Then the "Reset Form" button should be visible
 
-@maximize
 Scenario: Ensure the "Place An Order" button is visible
   Given I look for the "Place An Order" button
   Then the "Place An Order" button should be visible

@@ -1,12 +1,4 @@
-#When I add <Qty> item of "<Item Name>" to the order
-When('I add {int} item of {string} to the order') do |qty, item_name|
-    product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
-    product_names = all(product_name_css).map(&:text)
-    index = product_names.index(item_name)
-    
-    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type=text]"
-    find(quantity_input_selector).set(qty)
-end
+
   
 # Then I should see the following order details for the only item:
 Then('I should see the following order details for the only item:') do |table|
