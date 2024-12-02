@@ -46,4 +46,4 @@ Scenario: Push Left or Right Button
 
 Scenario: Push the GMO image
     When I click the GMO image
-    Then I should see the next title "GMO OnLine"
+    Then I should see the title "GMO OnLine"

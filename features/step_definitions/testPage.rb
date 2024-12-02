@@ -3,11 +3,6 @@ When('I click the button {string}') do |nameButton|
     click_button(nameButton)
   end
 
-#Then I should see the title "All Browsers Are Not Created Equal"
-Then('I should see the next title {string}') do |title|
-    expect(page).to have_selector('body > h1 > font', text: title)
-  end
-
 #And the table should have headers:
 Then(/^the table should have headers:$/) do |table|
     expected_headers = table.raw.flatten
