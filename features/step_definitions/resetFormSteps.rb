@@ -56,17 +56,7 @@
   end
   
   
-  # And I see a confirmation dialog with the message "Please enter only digits in this field."
-  And(/^I see a confirmation dialog with the message "([^"]*)"$/) do |message|
-    alert = page.driver.browser.switch_to.alert
-    expect(alert.text).to eq(message)
-  end
-  
-  # And I click the "Aceptar" button in the confirmation dialog
-  And(/^I click the "Aceptar" button in the confirmation dialog$/) do
-    page.driver.browser.switch_to.alert.accept
-  end
-  
+
   
   def find_item_selector(item_name)
     selectors = {

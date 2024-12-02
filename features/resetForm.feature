@@ -25,7 +25,6 @@ Scenario: Reset the order quantity for all items
   When I click the "Reset Form" button for delete all items
   Then all "Order quantity" fields should be reset to "0"
 
-@maximize
 Scenario: Reset the order quantity with invalid input
   When I fill the "Order quantity" field for "3 Person Dome Tent" with "hola"
   And I click the "Reset Form" button
