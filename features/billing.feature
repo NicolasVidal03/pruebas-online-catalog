@@ -5,7 +5,7 @@ Feature: As an internet user
 Background:
     Given I am on the GMO homepage
     When I click on the "Enter GMO OnLine" button
-    And I add 1 item of "3 Person Dome Tent" to the order
+    And I set the quantity input to "1" for the "3 Person Dome Tent"
     And I click on the "Place An Order" button
     And I click on the "Proceed With Order" button
     Then I should see the billing form
