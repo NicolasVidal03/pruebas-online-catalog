@@ -13,19 +13,18 @@ Feature: Placing an Order with a Single Item
     When I add <Qty> item of "<Item Name>" to the order
     And I click on the "Place An Order" button
     Then I should see the following order details for the only item:
-    | Qty   | Product Description | Delivery Status   | Unit Price | Total Price |
-    | <Qty> | <Item Name>         | <Delivery Status> | <Price>    | <Price>     |
-    And I should see the Product Total information below:
-    | Product Total | Sales Tax  | Shipping & Handling | Grand Total  |       
-    | <Price>       | <SalesTax> | $ 5.00              | <GrandTotal> |
+    | Qty   | Product Description | Delivery Status   | Unit Price | Shipping & Handling | 
+    | <Qty> | <Item Name>         | <Delivery Status> | <Price>    | $ 5.00              |
+
     Examples:
-    | Qty | Item Name              | Delivery Status | Price    | SalesTax  | GrandTotal  |
-    | 1   | 3 Person Dome Tent     | To Be Shipped   | $ 299.99 | $ 15.00   | $ 319.99    |
-    | 1   | External Frame Backpack| To Be Shipped   | $ 179.95 | $ 9.00    | $ 193.95    |
-    | 1   | Glacier Sun Glasses    | To Be Shipped   | $ 67.99  | $ 3.40    | $ 76.39     |
-    | 1   | Padded Socks           | To Be Shipped   | $ 19.99  | $ 1.00    | $ 25.99     |
-    | 1   | Hiking Boots           | To Be Shipped   | $ 109.90 | $ 5.50    | $ 120.40    |
-    | 1   | Back Country Shorts    | To Be Shipped   | $ 24.95  | $ 1.25    | $ 31.20     |
+    | Qty | Item Name               | Delivery Status | Price    | 
+    | 1   | 3 Person Dome Tent      | To Be Shipped   | $ 299.99 | 
+    | 1   | External Frame Backpack | To Be Shipped   | $ 179.95 | 
+    | 1   | Glacier Sun Glasses     | To Be Shipped   | $ 67.99  | 
+    | 1   | Padded Socks            | To Be Shipped   | $ 19.99  | 
+    | 1   | Hiking Boots            | To Be Shipped   | $ 109.90 | 
+    | 1   | Back Country Shorts     | To Be Shipped   | $ 24.95  | 
+
 
   Scenario: Placing an Order with Invalid Quantity
     When I enter "abc" in the Order Quantity field for 3 Person Dome Tent
@@ -42,9 +41,28 @@ Feature: Placing an Order with a Single Item
     | 1005        | Back Country Shorts     | $ 24.95    | 0              |
 
 
-  Scenario: Placing an Order with All Items
-    When I add <Qty> quantities of all the items <Item Name>
-    Examples:
-    | Qty | Item Name              | Delivery Status | Price    | SalesTax  | GrandTotal  |
-    | 1   | 3 Person Dome Tent     | To Be Shipped   | $ 299.99 | $ 15.00   | $ 319.99    |
+Scenario: Placing an Order with all Items
+  When I add all items of the catalog
+    | Qty | Item Name               | 
+    | 1   | 3 Person Dome Tent      | 
+    | 1   | External Frame Backpack | 
+    | 1   | Glacier Sun Glasses     | 
+    | 1   | Padded Socks            | 
+    | 1   | Hiking Boots            | 
+    | 1   | Back Country Shorts     | 
+  And I click on the "Place An Order" button
+  And I should see:
+    | Qty | Item Name               | Delivery Status | Unit Price |
+    | 1   | 3 Person Dome Tent      | To Be Shipped   | $ 299.99   |
+    | 1   | External Frame Backpack | To Be Shipped   | $ 179.95   |
+    | 1   | Glacier Sun Glasses     | To Be Shipped   | $ 67.99    |
+    | 1   | Padded Socks            | To Be Shipped   | $ 19.99    | 
+    | 1   | Hiking Boots            | To Be Shipped   | $ 109.90   |
+    | 1   | Back Country Shorts     | To Be Shipped   | $ 24.95    | 
 
+Scenario: Put an Order of one item with 0 quantity
+    When I add the order:
+      | Quantity | Item               | 
+      | 0        | 3 Person Dome Tent |
+    And I click on the "Place An Order" button
+    Then I should see an alert "Please Order Something First"

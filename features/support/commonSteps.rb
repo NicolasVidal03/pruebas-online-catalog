@@ -28,3 +28,10 @@ When(/^I click on the "([^"]*)" button$/) do |button_name|
 Then('I should see the title {string}') do |title|
   expect(page).to have_selector('h1', text: title)
 end
+
+#When I add the order:
+When('I add the order:') do | table |
+  table.hashes.each do |row|
+    step %{I add #{row['Quantity']} "#{row['Item']}" to the order}
+  end
+end
