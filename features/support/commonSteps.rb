@@ -35,3 +35,9 @@ When('I add the order:') do | table |
     step %{I add #{row['Quantity']} "#{row['Item']}" to the order}
   end
 end
+
+#I should see an alert "####"
+Then('I should see an alert {string}') do | alertMessage|
+  alert = page.driver.browser.switch_to.alert
+  expect(alertMessage).to include(alert.text)
+end
