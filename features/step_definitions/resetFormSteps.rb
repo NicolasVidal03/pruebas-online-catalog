@@ -1,14 +1,14 @@
-  # # Given I fill the "Order quantity" field for "3 Person Dome Tent" with "2"
-  # Given(/^I fill the "Order quantity" field for "([^"]+)" with "([^"]+)"$/) do |item_name, value|
-  #   product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
-  #   product_names = all(product_name_css).map(&:text)
+  # Given I fill the "Order quantity" field for "3 Person Dome Tent" with "2"
+  Given(/^I fill the "Order quantity" field for "([^"]+)" with "([^"]+)"$/) do |item_name, value|
+    product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
+    product_names = all(product_name_css).map(&:text)
   
-  #   index = product_names.index(item_name)
-  #   raise "Item not found: #{item_name}" if index.nil?
+    index = product_names.index(item_name)
+    raise "Item not found: #{item_name}" if index.nil?
   
-  #   quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type='text']"
-  #   find(quantity_input_selector).set(value)
-  # end
+    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type='text']"
+    find(quantity_input_selector).set(value)
+  end
   
   
   # Given I fill the "Order quantity" fields as shown below:
@@ -42,18 +42,18 @@
   end
   
   
-  # # Then the "Order quantity" field for "3 Person Dome Tent" should be reset to "0"
-  # Then(/^the "Order quantity" field for "([^"]+)" should be reset to "([^"]+)"$/) do |item_name, expected_value|
-  #   product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
-  #   product_names = all(product_name_css).map(&:text)
+  # Then the "Order quantity" field for "3 Person Dome Tent" should be reset to "0"
+  Then(/^the "Order quantity" field for "([^"]+)" should be reset to "([^"]+)"$/) do |item_name, expected_value|
+    product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
+    product_names = all(product_name_css).map(&:text)
   
-  #   index = product_names.index(item_name)
-  #   raise "Item not found: #{item_name}" if index.nil?
+    index = product_names.index(item_name)
+    raise "Item not found: #{item_name}" if index.nil?
   
-  #   quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type='text']"
-  #   actual_value = find(quantity_input_selector).value
-  #   expect(actual_value).to eq(expected_value)
-  # end
+    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type='text']"
+    actual_value = find(quantity_input_selector).value
+    expect(actual_value).to eq(expected_value)
+  end
   
   
 
