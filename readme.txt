@@ -1,18 +1,24 @@
-Proyecto de Automatización: Pruebas Online Catalog
-Este proyecto utiliza Cucumber para realizar pruebas automatizadas. A continuación, se detalla cómo ejecutar las pruebas.
+# Proyecto de Automatización: Pruebas Online Catalog
 
-Requisitos Previos
+Este proyecto utiliza **Cucumber** para realizar pruebas automatizadas. A continuación, se detalla cómo ejecutar las pruebas.
+
+## Requisitos Previos
+
 Antes de comenzar, asegúrate de tener los siguientes requisitos cumplidos:
 
-Ruby instalado.
-Cucumber instalado (gem install cucumber).
-Las dependencias necesarias instaladas (usa bundle install si usas Bundler).
-Ejecución de Pruebas
-Prueba 1: GMO (About GMO Page)
+- Ruby instalado.
+- Cucumber instalado (`gem install cucumber`).
+- Las dependencias necesarias instaladas (usa `bundle install` si usas Bundler).
+
+## Ejecución de Pruebas
+
+### Prueba 1: GMO (About GMO Page)
+
 Para ejecutar las pruebas relacionadas con la página GMO:
-´´´
+
+```bash
 cucumber features\aboutGMO.feature
-´´´
+```
 Prueba 2: Test Page
 Para ejecutar las pruebas de la página de pruebas general:
 
