@@ -5,7 +5,7 @@ Feature: As an internet user
 Background:
     Given I am on the GMO homepage
     When I click on the "Enter GMO OnLine" button
-    And I set the quantity input to "1" for the "3 Person Dome Tent"
+    And I add 1 item of "3 Person Dome Tent" to the order
     And I click on the "Place An Order" button
     And I click on the "Proceed With Order" button
     Then I should see the billing form
@@ -61,7 +61,7 @@ Scenario Outline: Validating to place an order with missing billing and shipping
       | Zip               | <ShipZip>           |
       | Phone             | <ShipPhone>         |
     And I click on the "Place The Order" button
-    Then I should see an error alert with the message "<AlertMessage>"
+    Then I see a confirmation dialog with the message "<AlertMessage>"
 
 Examples:
     | Name       | Address    | City     | State | Zip   | Phone        | Email       | CardNumber          | ExpirationDate | CreditCard        | ShipName | ShipAddress  | ShipCity | ShipState | ShipZip | ShipPhone    | AlertMessage                                                                   |
@@ -122,7 +122,7 @@ Scenario Outline: Validating fields wrongly filled for billing and shipping
       | Zip               | <ShipZip>           |
       | Phone             | <ShipPhone>         |
     And I click on the "Place The Order" button
-    Then I should see an error alert with the message "<AlertMessage>"
+    Then I see a confirmation dialog with the message "<AlertMessage>"
     
  Examples:
       | Name     | Address         | City       | State | Zip   | Phone        | Email           | CardNumber        | ExpirationDate  | CreditCard         | ShipName  | ShipAddress | ShipCity | ShipState | ShipZip | ShipPhone    | AlertMessage                                                                   |

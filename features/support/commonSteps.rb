@@ -19,7 +19,7 @@ When('I add {int} item of {string} to the order') do |qty, item_name|
     find(quantity_input_selector).set(qty)
 end
 
-# When I click on the xxxx button
+# When I click on the "name_button" button
 When(/^I click on the "([^"]*)" button$/) do |button_name|
     click_button(button_name)
   end  

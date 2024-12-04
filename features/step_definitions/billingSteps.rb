@@ -1,21 +1,3 @@
-# And I set the quantity input to "1" for the "3 Person Dome Tent"
-And(/^I set the quantity input to "([^"]*)" for the "([^"]*)"$/) do |quantity, product_name|
-    product_row = all('tr').find do |row|
-      row.all('td')[1]&.text&.include?(product_name)
-    end
-    within(product_row) do
-      price_text = all('td')[2]&.text 
-      raise "Price text not found for #{product_name}" if price_text.nil?
-  
-      unit_price = price_text.match(/\$ ([\d,]+\.\d{2})/)[1].to_f
-  
-      @quantity = quantity.to_i
-      @total_price = unit_price * @quantity
-  
-      all('input[type="text"]')[0].set(quantity)
-    end
-  end  
-
 # Then I should see the billing form
 Then(/^I should see the billing form$/) do
     bill_inputs = all("input") 
@@ -102,12 +84,6 @@ When(/^I fill in the billing information:$/) do |table|
     expect(page).to have_content("Sales Tax $ #{@sales_tax}")
     expect(page).to have_content("Shipping & Handling $ #{@shipping_cost}")
     expect(page).to have_content("Grand Total $ #{grand_total}")
-  end
-
-# Then I should see an error alert with the message "<AlertMessage>"
-Then(/^I should see an error alert with the message "(.*?)"$/) do |alert|
-    alert_text = page.driver.browser.switch_to.alert.text
-    expect(alert_text.strip).to eq(alert)
   end
 
 # And I click on the "Same as 'Bill To'" checkbox
