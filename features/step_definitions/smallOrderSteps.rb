@@ -41,7 +41,6 @@ Then('I should see the following order details for the only item:') do |table|
   sales_tax_value = clean_numeric_value(get_page_text(selectors_table_Place_order[:sales_tax]))
   shipping_handling_value = clean_numeric_value(get_page_text(selectors_table_Place_order[:shipping_handling]))
   grand_total_value = clean_numeric_value(get_page_text(selectors_table_Place_order[:grand_total]))
-  puts grand_total_value
 
 
   calculated_product_total = (unit_price_value * qty_page_value).round(2)
@@ -52,9 +51,6 @@ Then('I should see the following order details for the only item:') do |table|
   formatted_total_price = format_currency(calculated_product_total)
   formatted_sales_tax = format_currency(calculated_sales_tax_value)
   formatted_grand_total = format_currency(calculated_grand_total_value)
-
-
-  puts "#{calculated_product_total} + #{sales_tax_value} + #{shipping_handling_value} = #{formatted_grand_total}"
 
 
   expect(get_page_text(selectors_table_Place_order[:qty])).to have_content(qty_table)
@@ -99,7 +95,7 @@ When('I add {int} quantities of all the items {string}') do |qty, item_name|
     product_names = all(product_name_css).map(&:text)
     index = product_names.index(item_name)
 
-    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1})"
+    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type=text]"
     find(quantity_input_selector).set(qty)
 end
 
@@ -112,7 +108,7 @@ When('I add all items of the catalog') do |table|
     qty = row[0]               
     product_desc = row[1]     
     index = product_names.index(product_desc)
-    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1})"
+    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type=text]"
     find(quantity_input_selector).set(qty)
   end
 end

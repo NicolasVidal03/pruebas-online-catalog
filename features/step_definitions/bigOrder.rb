@@ -1,4 +1,4 @@
-
+# When I add <Qty> item of "<Item Name>" to the order
 When(/^I add (\d+) "([^"]*)" to the order$/) do |quantity, name|
     
     product_name_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2) > a > strong"
