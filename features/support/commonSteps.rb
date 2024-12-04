@@ -1,4 +1,4 @@
-# And I see a confirmation dialog with the message "Please enter only digits in this field."
+# And I see a confirmation dialog with the message "alert name."
 And(/^I see a confirmation dialog with the message "([^"]*)"$/) do |message|
   alert = page.driver.browser.switch_to.alert
   expect(alert.text).to eq(message)

@@ -47,15 +47,6 @@ Then('I should see the ActiveX table:') do | table |
         counter += 1 
     end
   end
-  
-
-#Then the page shows an alert
-Then('the page shows an alert') do
-    alert = page.driver.browser.switch_to.alert
-    alert_expect = 'This button AND the GMO image should be on the right edge of the page!' 
-    expect(alert_expect).to include(alert.text)
-  end
-
 
 #When I click the GMO image
 When('I click the GMO image') do

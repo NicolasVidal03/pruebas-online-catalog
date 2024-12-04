@@ -42,7 +42,7 @@ Scenario: See the ActiveX Page
 
 Scenario: Push Left or Right Button
     When I click the button " << Left or Right >> "
-    Then the page shows an alert
+    Then I see a confirmation dialog with the message "This button AND the GMO image should be on the right edge of the page!"
 
 Scenario: Push the GMO image
     When I click the GMO image

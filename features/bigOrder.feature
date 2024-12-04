@@ -100,4 +100,4 @@ Scenario: Put an Order of one item with really huge quantity
       | Quantity                     | Item               | 
       | 1000000000000000000000000000 | 3 Person Dome Tent |
     And I click on the "Place An Order" button
-    Then I should see an alert "Quantity not Allowed"
+    Then I see a confirmation dialog with the message "Quantity not Allowed"
