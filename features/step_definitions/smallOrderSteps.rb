@@ -99,11 +99,12 @@ When('I add {int} quantities of all the items {string}') do |qty, item_name|
     product_names = all(product_name_css).map(&:text)
     index = product_names.index(item_name)
 
-    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type=text]"
+    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1})"
     find(quantity_input_selector).set(qty)
 end
 
 
+# When I add all items of the catalog
 When('I add all items of the catalog') do |table|
   product_name_css = selectors_table_Place_order[:product_names]
   product_names = all(product_name_css).map(&:text)
@@ -111,11 +112,12 @@ When('I add all items of the catalog') do |table|
     qty = row[0]               
     product_desc = row[1]     
     index = product_names.index(product_desc)
-    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type=text]"
+    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1})"
     find(quantity_input_selector).set(qty)
   end
 end
 
+#  And I should see:
 And('I should see:') do |table|
   table_result = find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table')
   sales_tax = -0.01
