@@ -28,3 +28,9 @@ When(/^I click on the "([^"]*)" button$/) do |button_name|
 Then('I should see the title {string}') do |title|
   expect(page).to have_selector('h1', text: title)
 end
+
+#I should see an alert "####"
+Then('I should see an alert {string}') do | alertMessage|
+  alert = page.driver.browser.switch_to.alert
+  expect(alertMessage).to include(alert.text)
+end

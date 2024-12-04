@@ -53,9 +53,3 @@ Then('I should see more information about the order:') do | table |
         expect(value_element).to have_content(info_value)
     end
   end
-
-#I should see an alert "Quantity not Allowed"
-Then('I should see an alert {string}') do | alertMessage|
-    alert = page.driver.browser.switch_to.alert
-    expect(alertMessage).to include(alert.text)
-  end
