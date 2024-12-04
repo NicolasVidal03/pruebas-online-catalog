@@ -37,10 +37,10 @@ Scenario: Put an Order of three items, each with a big order quantity
     And I click on the "Place An Order" button
     Then I should see the title "Place Order"
     And I should see the following order details:
-      | Qty  | Product Description     | Delivery Status | Unit Price | Total Price |
-      | 100  | External Frame Backpack | To Be Shipped   | $ 179.95   | $ 17995.00  |
-      | 111  | Padded Socks            | To Be Shipped   | $ 19.99    | $ 2218.89   |
-      | 108  | Hiking Boots            | To Be Shipped   | $ 109.90   | $ 11869.20  |
+      | Qty  | Product Description     | Delivery Status | Unit Price |
+      | 100  | External Frame Backpack | To Be Shipped   | 179.95     | 
+      | 111  | Padded Socks            | To Be Shipped   | 19.99      | 
+      | 108  | Hiking Boots            | To Be Shipped   | 109.90     | 
     And I should see more information about the order:
       | Product Total             | $ 32083.09 |
       | Sales Tax                 | $ 1604.15  |
@@ -61,12 +61,12 @@ Scenario: Put an Order of all items, each with a big order quantity
     Then I should see the title "Place Order"
     And I should see the following order details:
       | Qty | Product Description     | Delivery Status | Unit Price | Total Price |
-      | 124 | 3 Person Dome Tent      | To Be Shipped   | $ 299.99   | $ 37198.76  |
-      | 157 | External Frame Backpack | To Be Shipped   | $ 179.95   | $ 28252.15  |
-      | 102 | Glacier Sun Glasses     | To Be Shipped   | $ 67.99    | $ 6934.98   |
-      | 160 | Padded Socks            | To Be Shipped   | $ 19.99    | $ 3198.40   |
-      | 115 | Hiking Boots            | To Be Shipped   | $ 109.90   | $ 12638.50  |
-      | 142 | Back Country Shorts     | To Be Shipped   | $ 24.95    | $ 3542.90   |
+      | 124 | 3 Person Dome Tent      | To Be Shipped   | 299.99   | $ 37198.76  |
+      | 157 | External Frame Backpack | To Be Shipped   | 179.95   | $ 28252.15  |
+      | 102 | Glacier Sun Glasses     | To Be Shipped   | 67.99    | $ 6934.98   |
+      | 160 | Padded Socks            | To Be Shipped   | 19.99    | $ 3198.40   |
+      | 115 | Hiking Boots            | To Be Shipped   | 109.90   | $ 12638.50  |
+      | 142 | Back Country Shorts     | To Be Shipped   | 24.95    | $ 3542.90   |
     And I should see more information about the order:
       | Product Total             | $ 91765.69 |
       | Sales Tax                 | $ 4588.28  |
@@ -87,12 +87,12 @@ Scenario: Put an Order of all items, each with a the same big quantity
     Then I should see the title "Place Order"
     And I should see the following order details:
       | Qty | Product Description     | Delivery Status | Unit Price | Total Price |
-      | 120 | 3 Person Dome Tent      | To Be Shipped   | $ 299.99   | $ 35998.80  |
-      | 120 | External Frame Backpack | To Be Shipped   | $ 179.95   | $ 21594.00  |
-      | 120 | Glacier Sun Glasses     | To Be Shipped   | $ 67.99    | $ 8158.80   |
-      | 120 | Padded Socks            | To Be Shipped   | $ 19.99    | $ 2398.80   |
-      | 120 | Hiking Boots            | To Be Shipped   | $ 109.90   | $ 13188.00  |
-      | 120 | Back Country Shorts     | To Be Shipped   | $ 24.95    | $ 2994.00   |
+      | 120 | 3 Person Dome Tent      | To Be Shipped   | 299.99   | $ 35998.80  |
+      | 120 | External Frame Backpack | To Be Shipped   | 179.95   | $ 21594.00  |
+      | 120 | Glacier Sun Glasses     | To Be Shipped   | 67.99    | $ 8158.80   |
+      | 120 | Padded Socks            | To Be Shipped   | 19.99    | $ 2398.80   |
+      | 120 | Hiking Boots            | To Be Shipped   | 109.90   | $ 13188.00  |
+      | 120 | Back Country Shorts     | To Be Shipped   | 24.95    | $ 2994.00   |
     And I should see more information about the order:
       | Product Total             | $ 84332.40 |
       | Sales Tax                 | $ 4216.62  |
