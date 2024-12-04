@@ -5,7 +5,7 @@ Feature: Browser Test Page
 
 Background:
     Given I am on the GMO homepage
-    When I click the button "Browser Test Page"
+    When I click on the "Browser Test Page" button
 
 Scenario: See the Browser Test Page           
     Then I should see the title "All Browsers Are Not Created Equal"
@@ -41,7 +41,7 @@ Scenario: See the ActiveX Page
 
 
 Scenario: Push Left or Right Button
-    When I click the button " << Left or Right >> "
+    When I click on the " << Left or Right >> " button
     Then I see a confirmation dialog with the message "This button AND the GMO image should be on the right edge of the page!"
 
 Scenario: Push the GMO image

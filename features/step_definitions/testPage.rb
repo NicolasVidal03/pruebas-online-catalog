@@ -1,8 +1,3 @@
-#When I click the button "Browser Test Page"
-When('I click the button {string}') do |nameButton|
-    click_button(nameButton)
-  end
-
 #And the table should have headers:
 Then(/^the table should have headers:$/) do |table|
     expected_headers = table.raw.flatten
