@@ -41,7 +41,6 @@ Then('I should see the following order details for the only item:') do |table|
   sales_tax_value = clean_numeric_value(get_page_text(selectors_table_Place_order[:sales_tax]))
   shipping_handling_value = clean_numeric_value(get_page_text(selectors_table_Place_order[:shipping_handling]))
   grand_total_value = clean_numeric_value(get_page_text(selectors_table_Place_order[:grand_total]))
-  puts grand_total_value
 
 
   calculated_product_total = (unit_price_value * qty_page_value).round(2)
@@ -52,9 +51,6 @@ Then('I should see the following order details for the only item:') do |table|
   formatted_total_price = format_currency(calculated_product_total)
   formatted_sales_tax = format_currency(calculated_sales_tax_value)
   formatted_grand_total = format_currency(calculated_grand_total_value)
-
-
-  puts "#{calculated_product_total} + #{sales_tax_value} + #{shipping_handling_value} = #{formatted_grand_total}"
 
 
   expect(get_page_text(selectors_table_Place_order[:qty])).to have_content(qty_table)
@@ -104,6 +100,7 @@ When('I add {int} quantities of all the items {string}') do |qty, item_name|
 end
 
 
+# When I add all items of the catalog
 When('I add all items of the catalog') do |table|
   product_name_css = selectors_table_Place_order[:product_names]
   product_names = all(product_name_css).map(&:text)
@@ -116,6 +113,7 @@ When('I add all items of the catalog') do |table|
   end
 end
 
+#  And I should see:
 And('I should see:') do |table|
   table_result = find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table')
   sales_tax = -0.01
