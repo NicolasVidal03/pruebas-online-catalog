@@ -7,7 +7,7 @@ Background:
     Given I am on the GMO homepage
     When I click on the "Enter GMO OnLine" button
 
-Scenario: Put an Order of one item with a big order quantity 
+Scenario Outline: Put an Order of one item with a big order quantity 
     When I add <Qty> item of "<Item Name>" to the order
     And I click on the "Place An Order" button
     Then I should see the title "Place Order"
