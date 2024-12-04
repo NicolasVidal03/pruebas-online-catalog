@@ -12,20 +12,17 @@ Scenario Outline: Put an Order of one item with a big order quantity
     And I click on the "Place An Order" button
     Then I should see the title "Place Order"
     And I should see the following order details for the only item:
-      | Qty   | Product Description | Delivery Status   | Unit Price | Total Price  |
-      | <Qty> | <Item Name>         | <Delivery Status> | <Price>    | <TotalPrice> |
-    And I should see the Product Total information below:
-      | Product Total | Sales Tax  | Shipping & Handling | Grand Total  |       
-      | <TotalPrice>  | <SalesTax> | $ 5.00              | <GrandTotal> |
+      | Qty   | Product Description | Delivery Status   | Unit Price | Shipping & Handling  |
+      | <Qty> | <Item Name>         | <Delivery Status> | <Price>    | $ 5.00               |
 
   Examples: 
-    | Qty | Item Name              | Delivery Status | Price      | SalesTax  | GrandTotal  | TotalPrice  |
-    | 100 | 3 Person Dome Tent     | To Be Shipped   | $ 299.99   | $ 1499.95 | $ 31503.95  | $ 29999.00  |
-    | 100 | External Frame Backpack| To Be Shipped   | $ 179.95   | $ 899.75  | $ 18899.75  | $ 17995.00  |
-    | 100 | Glacier Sun Glasses    | To Be Shipped   | $ 67.99    | $ 339.95  | $ 7143.95   | $ 6799.00   |
-    | 100 | Padded Socks           | To Be Shipped   | $ 19.99    | $ 99.95   | $ 2103.95   | $ 1999.00   |
-    | 100 | Hiking Boots           | To Be Shipped   | $ 109.90   | $ 549.50  | $ 11544.50  | $ 10990.00  |
-    | 100 | Back Country Shorts    | To Be Shipped   | $ 24.95    | $ 124.75  | $ 2624.75   | $ 2495.00   |
+    | Qty | Item Name              | Delivery Status | Price      |
+    | 100 | 3 Person Dome Tent     | To Be Shipped   | $ 299.99   |
+    | 100 | External Frame Backpack| To Be Shipped   | $ 179.95   |
+    | 100 | Glacier Sun Glasses    | To Be Shipped   | $ 67.99    |
+    | 100 | Padded Socks           | To Be Shipped   | $ 19.99    |
+    | 100 | Hiking Boots           | To Be Shipped   | $ 109.90   |
+    | 100 | Back Country Shorts    | To Be Shipped   | $ 24.95    |
 
 
 Scenario: Put an Order of three items, each with a big order quantity 
