@@ -92,7 +92,7 @@ cucumber --format html --out report.html
 ```
 Para ejecutar un conjunto específico de pruebas basado en etiquetas:
 
-##Estructura del Proyecto
+## Estructura del Proyecto
 Una breve descripción de la estructura de carpetas:
 
 - features/: Contiene los archivos .feature con los escenarios de prueba.
