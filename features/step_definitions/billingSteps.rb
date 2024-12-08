@@ -92,16 +92,11 @@ When(/^I fill in the billing information:$/) do |table|
   end
 
 # Then I should see the order receipt with Product Total, Sales Tax, Shipping & Handling and Grand Total
-Then(/^I should see the order receipt with Product Total, Sales Tax, Shipping & Handling and Grand Total$/) do
-    @sales_tax = (@total_price * 0.05).round(2)
-    @shipping_cost ||= 5.0 
-  
-    grand_total = (@total_price + @sales_tax + @shipping_cost).round(2)
-  
-    expect(page).to have_content("Product Total $ #{@total_price.round(2)}")
-    expect(page).to have_content("Sales Tax $ #{@sales_tax}")
-    expect(page).to have_content("Shipping & Handling $ #{@shipping_cost}")
-    expect(page).to have_content("Grand Total $ #{grand_total}")
+Then(/^I should see the order receipt with Product Total "([^"]*)", Sales Tax "([^"]*)", Shipping & Handling "([^"]*)" and Grand Total "([^"]*)"$/) do |product_total, sales_tax, shipping_handling, grand_total|
+  expect(page).to have_content("Product Total $ #{product_total}")
+  expect(page).to have_content("Sales Tax $ #{sales_tax}")
+  expect(page).to have_content("Shipping & Handling $ #{shipping_handling}")
+  expect(page).to have_content("Grand Total $ #{grand_total}")
 end
 
 # And I click on the "Same as 'Bill To'" checkbox
