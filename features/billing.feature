@@ -32,7 +32,7 @@ Scenario Outline: Validating the billing form fields
       | Zip               | <ShipZip>           |
       | Phone             | <ShipPhone>         |
     And I click on the "Place The Order" button
-    Then I should see the order receipt details
+    Then I should see the order receipt with Product Total, Sales Tax, Shipping & Handling and Grand Total
 
 Examples:
       | Name          | Address        | City          | State  | Zip    | Phone        | Email          | CardNumber           | ExpirationDate  | CreditCard       | ShipName      | ShipAddress    | ShipCity     | ShipState   | ShipZip  | ShipPhone  |

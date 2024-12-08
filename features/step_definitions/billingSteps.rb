@@ -91,8 +91,8 @@ When(/^I fill in the billing information:$/) do |table|
     end
   end
 
-# Then I should see the order receipt details
-Then(/^I should see the order receipt details$/) do
+# Then I should see the order receipt with Product Total, Sales Tax, Shipping & Handling and Grand Total
+Then(/^I should see the order receipt with Product Total, Sales Tax, Shipping & Handling and Grand Total$/) do
     @sales_tax = (@total_price * 0.05).round(2)
     @shipping_cost ||= 5.0 
   
