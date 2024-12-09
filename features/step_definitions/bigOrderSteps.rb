@@ -31,8 +31,8 @@ Then('I should see the following order details:') do | table |
     end
   end
 
-#And I should see more information about the order:
-Then('I should see more information about the order:') do | table |
+#And I should see the Shipping & Handling, Sales Tax y Grand Total
+Then('I should see the Shipping & Handling, Sales Tax y Grand Total') do | table |
     info_order = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
 
     table.rows.each do |row|

@@ -38,7 +38,7 @@ Scenario: Put an Order of three items, each with a big order quantity
       | 100  | External Frame Backpack | To Be Shipped   | 179.95     | 
       | 111  | Padded Socks            | To Be Shipped   | 19.99      | 
       | 108  | Hiking Boots            | To Be Shipped   | 109.90     | 
-    And I should see more information about the order:
+    And I should see the Shipping & Handling, Sales Tax y Grand Total
       | Product Total             | $ 32083.09 |
       | Sales Tax                 | $ 1604.15  |
       | Shipping & Handling       | $ 5.00     |
@@ -64,7 +64,7 @@ Scenario: Put an Order of all items, each with a big order quantity
       | 160 | Padded Socks            | To Be Shipped   | 19.99    | $ 3198.40   |
       | 115 | Hiking Boots            | To Be Shipped   | 109.90   | $ 12638.50  |
       | 142 | Back Country Shorts     | To Be Shipped   | 24.95    | $ 3542.90   |
-    And I should see more information about the order:
+    And I should see the Shipping & Handling, Sales Tax y Grand Total
       | Product Total             | $ 91765.69 |
       | Sales Tax                 | $ 4588.28  |
       | Shipping & Handling       | $ 5.00     |
@@ -90,7 +90,7 @@ Scenario: Put an Order of all items, each with a the same big quantity
       | 120 | Padded Socks            | To Be Shipped   | 19.99    | $ 2398.80   |
       | 120 | Hiking Boots            | To Be Shipped   | 109.90   | $ 13188.00  |
       | 120 | Back Country Shorts     | To Be Shipped   | 24.95    | $ 2994.00   |
-    And I should see more information about the order:
+    And I should see the Shipping & Handling, Sales Tax y Grand Total
       | Product Total             | $ 84332.40 |
       | Sales Tax                 | $ 4216.62  |
       | Shipping & Handling       | $ 5.00     |
