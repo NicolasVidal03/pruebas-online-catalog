@@ -11,7 +11,7 @@ Background:
 Scenario: Verify the catalog displays the correct items
   Given I see the title "OnLine Catalog"
   And I see the text: These are the items currently available through our online catalog. Select the quantity of each item and then press the "Place An Order" button at the bottom of the page.
-  Then I should see the following items:
+  Then I should see the following items along with their unit price and order quantity:
     | Item Number | Item Name                 | Unit Price | Order Quantity |
     | 1000        | 3 Person Dome Tent        | $ 299.99   | 0              |
     | 1001        | External Frame Backpack   | $ 179.95   | 0              |

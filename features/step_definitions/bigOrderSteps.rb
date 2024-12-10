@@ -9,30 +9,31 @@ When(/^I add (\d+) "([^"]*)" to the order$/) do |quantity, name|
     find(input).set(quantity)
   end
 
-#And I should see the following order details:
-Then('I should see the following order details:') do | table |
+# Then I should see the following items with details about quantity, product description, delivery status, unit price, and total price:
+Then('I should see the following items with details about quantity, product description, delivery status, unit price, and total price:') do | table |
     order_details = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
   
     table.hashes.each_with_index do | row, index |
-      qty = row['Qty'].to_i
+      qty = row['Qty']
       description = row['Product Description']
       delivery = row['Delivery Status']
-      unit_price = row['Unit Price'].to_f
-      expected_total_price = (qty * unit_price).round(2)
+      unit_price = row['Unit Price']
+      total_price = row['Total Price']
+
   
       row_index = index + 2
       order_row = order_details.find("tr:nth-child(#{row_index})")
 
-      expect(order_row.find('td:nth-child(1)').text).to eq(qty.to_s)
+      expect(order_row.find('td:nth-child(1)').text).to eq(qty)
       expect(order_row.find('td:nth-child(2)').text).to eq(description)
       expect(order_row.find('td:nth-child(3)').text).to eq(delivery)
-      expect(order_row.find('td:nth-child(4)').text).to eq(format("$ %.2f", unit_price))
-      expect(order_row.find('td:nth-child(5)').text).to eq(format("$ %.2f", expected_total_price))
+      expect(order_row.find('td:nth-child(4)').text).to eq(unit_price)
+      expect(order_row.find('td:nth-child(5)').text).to eq(total_price)
     end
   end
 
-#And I should see more information about the order:
-Then('I should see more information about the order:') do | table |
+#And I should see additional information about the order, including product total, sales tax, shipping & handling, and grand total:
+Then('I should see additional information about the order, including product total, sales tax, shipping & handling, and grand total:') do | table |
     info_order = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
 
     table.rows.each do |row|

@@ -5,9 +5,9 @@ Then(/^the table should have headers:$/) do |table|
     expect(actual_headers).to match_array(expected_headers)
   end
 
-#And the {first, second} column should contain:
-Then(/^the "([^"]*)" column should contain:$/) do |columnNumber, table|
-  number = columnNumber == 'first' ? 1 : 2
+#And the {Internet Explorer 3.0 or Netscape Navigator 3.0} column should display the following content:
+Then(/^the "([^"]*)" column should display the following content:$/) do |columnNumber, table|
+  number = columnNumber == 'Internet Explorer 3.0' ? 1 : 2
   expected_content = table.raw.flatten
 
   td_xpath = "/html/body/div/center/table/tbody/tr/td[2]/table/tbody/tr[2]/td[#{number}]"

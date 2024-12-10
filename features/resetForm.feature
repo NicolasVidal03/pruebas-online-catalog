@@ -28,7 +28,7 @@ Scenario: Reset Form with Invalid Quantity
     And I click on the "Reset Form" button
     Then I see a confirmation dialog with the message "Please enter only digits in this field."
     And I click the "Aceptar" button in the confirmation dialog
-    And I see the follow table:
+    And I see the following table displaying the items, their unit prices, and their order quantities:
     | Item Number | Item name               | Unit Price | Order Quantity |
     | 1000        | 3 Person Dome Tent      | $ 299.99   | 0              |
     | 1001        | External Frame Backpack | $ 179.95   | 0              |
