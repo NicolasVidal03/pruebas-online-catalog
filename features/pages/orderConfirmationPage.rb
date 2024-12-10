@@ -38,5 +38,6 @@ class OrderConfirmationPage
             expect(value_element).to have_content(info_value)
         end
     end
+    
 end
 end
