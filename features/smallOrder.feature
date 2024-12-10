@@ -6,8 +6,6 @@ Feature: Placing an Order with a Single Item
   Background:
     Given I am on the GMO homepage
     And I click on the "Enter GMO OnLine" button
-    And I am on the GMO home
-
 
   Scenario Outline: Placing an Order with a Single Item
     When I add <Qty> item of "<Item Name>" to the order
