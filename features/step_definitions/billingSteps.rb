@@ -1,5 +1,6 @@
 Before do
   @billing_page = BillingPage.new
+  @order_receipt_page=OrderReceiptPage.new
 end
 
 # Then I should see the billing form
@@ -21,7 +22,7 @@ end
 
 # Then I should see the order receipt with Product Total, Sales Tax, Shipping & Handling and Grand Total
 Then(/^I should see the order receipt with Product Total "([^"]*)", Sales Tax "([^"]*)", Shipping & Handling "([^"]*)" and Grand Total "([^"]*)"$/) do |product_total, sales_tax, shipping_handling, grand_total|
-  @billing_page.verify_order_receipt(
+  @order_receipt_page.verify_order_receipt(
     product_total: product_total,
     sales_tax: sales_tax,
     shipping_handling: shipping_handling,
