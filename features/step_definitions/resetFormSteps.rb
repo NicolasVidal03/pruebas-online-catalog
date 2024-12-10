@@ -29,11 +29,6 @@
   end
   
   
-  # When I click the "Reset Form" button
-  When(/^I click the "Reset Form" button(?: for delete all items)?$/) do
-    click_button('Reset Form')
-  end
-  
   # Then all "Order quantity" fields should be reset to "0"
   Then(/^all "Order quantity" fields should be reset to "0"$/) do
     all(:xpath, "//input[@type='text']").each do |field|
