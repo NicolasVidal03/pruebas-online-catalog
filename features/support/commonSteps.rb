@@ -11,12 +11,8 @@ end
 
 #When I add <Qty> item of "<Item Name>" to the order
 When('I add {int} item of {string} to the order') do |qty, item_name|
-    product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
-    product_names = all(product_name_css).map(&:text)
-    index = product_names.index(item_name)
-    
-    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type=text]"
-    find(quantity_input_selector).set(qty)
+  catalog_page = CatalogPage.new
+  catalog_page.add_product_to_order(qty, item_name)
 end
 
 # When I click on the "name_button" button
@@ -32,7 +28,7 @@ end
 #When I add the order:
 When('I add the order:') do | table |
   table.hashes.each do |row|
-    step %{I add #{row['Quantity']} "#{row['Item']}" to the order}
+    step %{I add #{row['Quantity']} item of "#{row['Item']}" to the order}
   end
 end
 
