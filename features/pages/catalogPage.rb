@@ -2,7 +2,6 @@ class CatalogPage
     include Capybara::DSL
     include RSpec::Matchers
 
-  
     def add_product_to_order(quantity, product_name)
       product_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2) > a > strong"
       all_product_names = all(product_selector).map(&:text)
