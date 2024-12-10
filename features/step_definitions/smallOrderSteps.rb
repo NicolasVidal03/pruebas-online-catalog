@@ -54,12 +54,6 @@ And('I should see the details for the following fields: Product Total, Sales Tax
     expect(grand_total_page).to have_content(grand_total_table)
 end
 
-# When I enter abc in the "Order Quantity" field for "3 Person Dome Tent"
-When('I enter {string} in the Order Quantity field for 3 Person Dome Tent') do |quantity|
-  quantity_table = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(2) > td:nth-child(4) > h1 > input[type=text]"
-  find(quantity_table).set(quantity) 
-end
-
 # And I see the following table displaying the items, their unit prices, and their order quantities:
 And('I see the following table displaying the items, their unit prices, and their order quantities:') do |expected_table|
   @catalog_page.verify_product_table(expected_table)

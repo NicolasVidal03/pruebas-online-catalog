@@ -40,3 +40,9 @@ Then('I should see an alert {string}') do | alertMessage|
   alert = page.driver.browser.switch_to.alert
   expect(alertMessage).to include(alert.text)
 end
+
+# When I enter abc in the "Order Quantity" field for "3 Person Dome Tent"
+When('I enter {string} in the Order Quantity field for 3 Person Dome Tent') do |quantity|
+  quantity_table = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(2) > td:nth-child(4) > h1 > input[type=text]"
+  find(quantity_table).set(quantity) 
+end
