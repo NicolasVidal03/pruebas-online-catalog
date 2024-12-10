@@ -1,54 +1,14 @@
-# When I add <Qty> item of "<Item Name>" to the order
-When(/^I add (\d+) "([^"]*)" to the order$/) do |quantity, name|
-    
-    product_name_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2) > a > strong"
-    all_product_names = all(product_name_selector).map(&:text)
-    index = all_product_names.index(name)
-  
-    input = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 2}) > td:nth-child(4) > h1 > input[type=text]"
-    find(input).set(quantity)
-  end
+Before do
+  @catalog_page = CatalogPage.new
+  @order_confirmation_page = OrderConfirmationPage.new
+end
 
 # Then I should see the following items with details about quantity, product description, delivery status, unit price, and total price:
 Then('I should see the following items with details about quantity, product description, delivery status, unit price, and total price:') do | table |
-    order_details = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
-  
-    table.hashes.each_with_index do | row, index |
-      qty = row['Qty']
-      description = row['Product Description']
-      delivery = row['Delivery Status']
-      unit_price = row['Unit Price']
-      total_price = row['Total Price']
-
-  
-      row_index = index + 2
-      order_row = order_details.find("tr:nth-child(#{row_index})")
-
-      expect(order_row.find('td:nth-child(1)').text).to eq(qty)
-      expect(order_row.find('td:nth-child(2)').text).to eq(description)
-      expect(order_row.find('td:nth-child(3)').text).to eq(delivery)
-      expect(order_row.find('td:nth-child(4)').text).to eq(unit_price)
-      expect(order_row.find('td:nth-child(5)').text).to eq(total_price)
-    end
-  end
+  @order_confirmation_page.verify_order_details(table)
+end
 
 #And I should see additional information about the order, including product total, sales tax, shipping & handling, and grand total:
 Then('I should see additional information about the order, including product total, sales tax, shipping & handling, and grand total:') do | table |
-
-    info_order = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
-
-    table.rows.each do |row|
-        info_label = row[0]
-        info_value = row[1]
-        info_row = info_order.find('tr', text: /\b#{info_label}\b/i)
-        expect(info_row).to have_content(info_label)
-
-        value_element = nil
-        if info_label == 'Product Total'
-            value_element = info_row.find('td:nth-child(3)')
-        else
-            value_element = info_row.find('td:nth-child(2)')
-        end
-        expect(value_element).to have_content(info_value)
-    end
-  end
+  @order_confirmation_page.verify_additional_info(table)
+end

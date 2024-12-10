@@ -7,13 +7,13 @@ Background:
   When I click on the "Enter GMO OnLine" button
 
 Scenario: Clear a single field when clicking Reset Form
-  When I fill the "Order quantity" field for "3 Person Dome Tent" with "2"
+  When I add 2 item of "3 Person Dome Tent" to the order
   And I click on the "Reset Form" button
   Then the "Order quantity" field for "3 Person Dome Tent" should be reset to "0"
 
 Scenario: Reset the order quantity for all items
-  Given I fill the "Order quantity" fields as shown below:
-    | Item Name                | Order Quantity |
+  Given I add the following items to the order with their respective quantities:
+    | Item                     | Quantity |
     | 3 Person Dome Tent       | 1              |
     | External Frame Backpack  | 2              |
     | Glacier Sun Glasses      | 3              |

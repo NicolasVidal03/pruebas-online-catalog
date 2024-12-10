@@ -1,3 +1,7 @@
+Before do
+  @catalog_page = CatalogPage.new
+end
+
 # And I see a confirmation dialog with the message "alert name."
 And(/^I see a confirmation dialog with the message "([^"]*)"$/) do |message|
   alert = page.driver.browser.switch_to.alert
@@ -11,12 +15,7 @@ end
 
 #When I add <Qty> item of "<Item Name>" to the order
 When('I add {int} item of {string} to the order') do |qty, item_name|
-    product_name_css = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr > td:nth-child(2)"
-    product_names = all(product_name_css).map(&:text)
-    index = product_names.index(item_name)
-    
-    quantity_input_selector = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 1}) > td:nth-child(4) > h1 > input[type=text]"
-    find(quantity_input_selector).set(qty)
+  @catalog_page.add_product_to_order(qty, item_name)
 end
 
 # When I click on the "name_button" button
@@ -32,7 +31,7 @@ end
 # When I add the following items to the order with their respective quantities:
 When('I add the following items to the order with their respective quantities:') do | table |
   table.hashes.each do |row|
-    step %{I add #{row['Quantity']} "#{row['Item']}" to the order}
+    step %{I add #{row['Quantity']} item of "#{row['Item']}" to the order}
   end
 end
 
@@ -40,4 +39,10 @@ end
 Then('I should see an alert {string}') do | alertMessage|
   alert = page.driver.browser.switch_to.alert
   expect(alertMessage).to include(alert.text)
+end
+
+# When I enter abc in the "Order Quantity" field for "3 Person Dome Tent"
+When('I enter {string} in the Order Quantity field for 3 Person Dome Tent') do |quantity|
+  quantity_table = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(2) > td:nth-child(4) > h1 > input[type=text]"
+  find(quantity_table).set(quantity) 
 end

@@ -1,3 +1,8 @@
+Before do
+  @catalog_page = CatalogPage.new
+  @order_confirmation_page = OrderConfirmationPage.new
+end
+
 def get_page_text(selector)
   find(selector).text.strip
 end
@@ -25,67 +30,33 @@ selectors_table_Place_order = {
 
 # Then I should see the details for the following fields: Quantity (Qty), Product Description, Delivery Status, Unit Price, and Total Price:
 Then('I should see the details for the following fields: Quantity \(Qty), Product Description, Delivery Status, Unit Price, and Total Price:') do |table|
-
-  row = table.hashes.first
-  qty_table = row['Qty']
-  product_desc_table = row['Product Description']
-  delivery_status_table = row['Delivery Status']
-  unit_price_table = row['Unit Price']
-  total_price_table = row['Total Price']
-
-  qty_page_page = get_page_text(selectors_table_Place_order[:qty])
-  product_description_page = get_page_text(selectors_table_Place_order[:product_desc])
-  delivery_status_page = get_page_text(selectors_table_Place_order[:delivery_status])
-  unit_price_page = get_page_text(selectors_table_Place_order[:unit_price])
-  total_price_page = get_page_text(selectors_table_Place_order[:total_price])
- 
-
-
-
-  expect(qty_page_page).to have_content(qty_table)
-  expect(product_description_page).to have_content(product_desc_table)
-  expect(delivery_status_page).to have_content(delivery_status_table)
-  expect(unit_price_page).to have_content(unit_price_table)
-  expect(total_price_page).to have_content(total_price_table)
+  @order_confirmation_page.verify_order_details(table)
 end
 
 
 # And I should see the details for the following fields: Product Total, Sales Tax, Shipping & Handling, Grand Total:
 And('I should see the details for the following fields: Product Total, Sales Tax, Shipping & Handling, Grand Total:') do |table|
 
-  product_total_page = get_page_text(selectors_table_Place_order[:product_total])
-  sales_tax_page = get_page_text(selectors_table_Place_order[:sales_tax])
-  shipping_handling_page = get_page_text(selectors_table_Place_order[:shipping_handling])
-  grand_total_page = get_page_text(selectors_table_Place_order[:grand_total])
+    product_total_page = get_page_text(selectors_table_Place_order[:product_total])
+    sales_tax_page = get_page_text(selectors_table_Place_order[:sales_tax])
+    shipping_handling_page = get_page_text(selectors_table_Place_order[:shipping_handling])
+    grand_total_page = get_page_text(selectors_table_Place_order[:grand_total])
 
-  row = table.hashes.first
-  product_total_table = row['Product Total']
-  sales_tax_table = row['Sales Tax']
-  shipping_handling_table = row['Shipping & Handling']
-  grand_total_table = row['Grand Total']
+    row = table.hashes.first
+    product_total_table = row['Product Total']
+    sales_tax_table = row['Sales Tax']
+    shipping_handling_table = row['Shipping & Handling']
+    grand_total_table = row['Grand Total']
 
-  expect(product_total_page).to have_content(product_total_table)
-  expect(sales_tax_page).to have_content(sales_tax_table)
-  expect(shipping_handling_page).to have_content(shipping_handling_table)
-  expect(grand_total_page).to have_content(grand_total_table)
-end
-
-# When I enter abc in the "Order Quantity" field for "3 Person Dome Tent"
-When('I enter {string} in the Order Quantity field for 3 Person Dome Tent') do |quantity|
-  quantity_table = "body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(2) > td:nth-child(4) > h1 > input[type=text]"
-  find(quantity_table).set(quantity) 
+    expect(product_total_page).to have_content(product_total_table)
+    expect(sales_tax_page).to have_content(sales_tax_table)
+    expect(shipping_handling_page).to have_content(shipping_handling_table)
+    expect(grand_total_page).to have_content(grand_total_table)
 end
 
 # And I see the following table displaying the items, their unit prices, and their order quantities:
 And('I see the following table displaying the items, their unit prices, and their order quantities:') do |expected_table|
-  actual_table = find('body > form > table > tbody > tr:nth-child(2) > td > div > center > table') # Encuentra la tabla en la página
-  rows = actual_table.all('tr') 
-
-  expected_table.hashes.each_with_index do |expected_row, index|
-    row = rows[index + 1] 
-    columns = row.all('td').map(&:text) 
-    expect(columns).to eq(expected_row.values)
-  end
+  @catalog_page.verify_product_table(expected_table)
 end
 
 # When I add <Qty> quantities of all the items <Item Name>
