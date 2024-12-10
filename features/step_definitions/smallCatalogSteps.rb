@@ -14,8 +14,8 @@
     expect(page).to have_content(text_info)
   end
   
-  # Then I should see the following items:
-  Then(/^I should see the following items:$/) do |table|
+  # Then I should see the following items along with their unit price and order quantity:
+  Then(/^I should see the following items along with their unit price and order quantity:$/) do |table|
     table.hashes.each_with_index do |row, index|
       item_number_selector = " body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 2}) > td:nth-child(1)"
       item_name_selector = " body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody > tr:nth-child(#{index + 2}) > td:nth-child(2) > a > strong"

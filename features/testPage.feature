@@ -12,12 +12,12 @@ Scenario: See the Browser Test Page
     And the table should have headers:
       | Internet Explorer 3.0  |
       | Netscape Navigator 3.0 |
-    And the "first" column should contain:
+     And the "Internet Explorer 3.0" column should display the following content:
       | Blinking Text  |
       | dot bullets    |
       | circle bullets |
       | square bullets |
-    And the "second" column should contain:
+    And the "Netscape Navigator 3.0" column should display the following content:
       | Colored Horizontal Rules |
       | Definition Text Style (should be an italic font) |
       | Trademarks are important™ |
