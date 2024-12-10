@@ -8,7 +8,7 @@ Background:
 
 Scenario: Clear a single field when clicking Reset Form
   When I fill the "Order quantity" field for "3 Person Dome Tent" with "2"
-  And I click the "Reset Form" button
+  And I click on the "Reset Form" button
   Then the "Order quantity" field for "3 Person Dome Tent" should be reset to "0"
 
 Scenario: Reset the order quantity for all items
@@ -20,7 +20,7 @@ Scenario: Reset the order quantity for all items
     | Padded Socks             | 4              |
     | Hiking Boots             | 5              |
     | Back Country Shorts      | 6              |
-  When I click the "Reset Form" button for delete all items
+  When I click on the "Reset Form" button
   Then all "Order quantity" fields should be reset to "0"
   
 Scenario: Reset Form with Invalid Quantity
@@ -36,4 +36,3 @@ Scenario: Reset Form with Invalid Quantity
     | 1003        | Padded Socks            | $ 19.99    | 0              |
     | 1004        | Hiking Boots            | $ 109.90   | 0              |
     | 1005        | Back Country Shorts     | $ 24.95    | 0              |
-    

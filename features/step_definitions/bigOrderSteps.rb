@@ -34,6 +34,7 @@ Then('I should see the following items with details about quantity, product desc
 
 #And I should see additional information about the order, including product total, sales tax, shipping & handling, and grand total:
 Then('I should see additional information about the order, including product total, sales tax, shipping & handling, and grand total:') do | table |
+
     info_order = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
 
     table.rows.each do |row|

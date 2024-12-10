@@ -32,12 +32,12 @@ Scenario Outline: Validating the billing form fields
       | Zip               | <ShipZip>           |
       | Phone             | <ShipPhone>         |
     And I click on the "Place The Order" button
-    Then I should see the order receipt with Product Total, Sales Tax, Shipping & Handling and Grand Total
+    Then I should see the order receipt with Product Total "<ProductTotal>", Sales Tax "<SalesTax>", Shipping & Handling "<ShippingHandling>" and Grand Total "<GrandTotal>"
 
 Examples:
-      | Name          | Address        | City          | State  | Zip    | Phone        | Email          | CardNumber           | ExpirationDate  | CreditCard       | ShipName      | ShipAddress    | ShipCity     | ShipState   | ShipZip  | ShipPhone  |
-      | John Doe      | 123 Main St.   | New York      | NY     | 10001  | 555-123-4567 | john@email.com | 1234-1234-1234-1234  | 12/25           | Visa             | Jane Doe      | 123 Main St.   | New York     | NY          | 10001    | 555-567-8901|
-      | Alice Smith   | 456 Oak Ave.   | Los Angeles   | CA     | 90001  | 555-987-6543 | alice@email.com| 9876-5432-4587-9876  | 11/26           | MasterCard       | Bob Smith     | 456 Oak Ave.   | Los Angeles  | CA          | 90001    | 555-432-1098|
+      | Name          | Address        | City          | State  | Zip    | Phone        | Email          | CardNumber           | ExpirationDate  | CreditCard       | ShipName      | ShipAddress    | ShipCity     | ShipState   | ShipZip  | ShipPhone   | ProductTotal | SalesTax | ShippingHandling | GrandTotal |
+      | John Doe      | 123 Main St.   | New York      | NY     | 10001  | 555-123-4567 | john@email.com | 1234-1234-1234-1234  | 12/25           | Visa             | Jane Doe      | 123 Main St.   | New York     | NY          | 10001    | 555-567-8901| 299.99       | 15.00    | 5.00             | 319.99     |
+      | Alice Smith   | 456 Oak Ave.   | Los Angeles   | CA     | 90001  | 555-987-6543 | alice@email.com| 9876-5432-4587-9876  | 11/26           | MasterCard       | Bob Smith     | 456 Oak Ave.   | Los Angeles  | CA          | 90001    | 555-432-1098| 299.99       | 15.00    | 5.00             | 319.99     |
 
 Scenario Outline: Validating to place an order with missing billing and shipping fields
     When I fill in the billing information:

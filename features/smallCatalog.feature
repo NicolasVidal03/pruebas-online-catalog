@@ -8,7 +8,7 @@ Background:
   When I click on the "Enter GMO OnLine" button
   And I am on the GMO home
 
-Scenario: Verify the catalog displays the correct items
+Scenario: Verify the catalog displays each item's number, name, unit price, and order quantity
   Given I see the title "OnLine Catalog"
   And I see the text: These are the items currently available through our online catalog. Select the quantity of each item and then press the "Place An Order" button at the bottom of the page.
   Then I should see the following items along with their unit price and order quantity:
