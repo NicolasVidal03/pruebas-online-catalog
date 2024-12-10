@@ -10,6 +10,10 @@ class CatalogPage
       find(input_selector).set(quantity)
     end
 
+    def click_product_link(product_name)
+      click_link(product_name)
+    end
+
     def verify_product_table(expected_table)
       actual_table = find('body > form > table > tbody > tr:nth-child(2) > td > div > center > table') 
       rows = actual_table.all('tr')

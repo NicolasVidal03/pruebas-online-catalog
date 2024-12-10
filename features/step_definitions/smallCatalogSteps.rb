@@ -1,14 +1,3 @@
-  # And I am on the GMO homep
-  And(/^I am on the GMO home$/) do
-    expect(page).to have_content("OnLine Catalog")
-  end
-
-  
-  # Given I see the title "OnLine Catalog"
-  Given(/^I see the title "([^"]*)"$/) do |expected_title|
-    expect(page).to have_content(expected_title)
-  end
-  
   #  And I see the text: These are the items currently available through our online catalog. Select the quantity of each item and then press the "Place An Order" button at the bottom of the page.
   And(/^I see the text: (.*)$/) do |text_info|
     expect(page).to have_content(text_info)
