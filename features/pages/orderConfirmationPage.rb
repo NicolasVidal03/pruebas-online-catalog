@@ -1,6 +1,12 @@
 class OrderConfirmationPage
     include Capybara::DSL
     include RSpec::Matchers
+    SELECTORS_TABLE = {
+        product_total: 'body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody > tr:nth-child(3) > td:nth-child(3)',
+        sales_tax: 'body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody > tr:nth-child(4) > td:nth-child(2)',
+        shipping_handling: 'body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody > tr:nth-child(5) > td:nth-child(2)',
+        grand_total: 'body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody > tr:nth-child(6) > td:nth-child(2) > strong',
+    }
   
     def verify_order_details(table)
         order_details = page.find('body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
@@ -37,6 +43,21 @@ class OrderConfirmationPage
             end
             expect(value_element).to have_content(info_value)
         end
+    end
+
+    def verify_totals(expected_totals)
+        product_total_page = find(SELECTORS_TABLE[:product_total]).text.strip
+        sales_tax_page = find(SELECTORS_TABLE[:sales_tax]).text.strip
+        shipping_handling_page = find(SELECTORS_TABLE[:shipping_handling]).text.strip
+        grand_total_page = find(SELECTORS_TABLE[:grand_total]).text.strip
+        
+        expected_totals.hashes.each do |row|
+          expect(product_total_page).to eq(row['Product Total'])
+          expect(sales_tax_page).to eq(row['Sales Tax'])
+          expect(shipping_handling_page).to eq(row['Shipping & Handling'])
+          expect(grand_total_page).to eq(row['Grand Total'])
+        end
+        
     end
     
 end
